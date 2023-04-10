@@ -19,7 +19,7 @@
 
 <body class="container-fluid">
   <center class="row">
-    <h1>Data <b></b>  <b></b>Analysis</h1>
+    <h1>Data <b></b>  <b></b>Overview</h1>
   </center>
   <hr />
   <div class="row">
@@ -29,31 +29,6 @@
         <div class="col-md-6">
       <canvas id="myChartBar"></canvas>
       <div class="row">
-        <div class="col-md-4">
-          <img src="{{ dark_url }}" alt="Dark Image">
-        </div>
-        <div class="col-md-4">
-          <img src="{{ decoded_url }}" alt="Decoded Image">
-        </div>
-        <div class="col-md-4">
-          <img src="{{ disparity_url }}" alt="Disparity Image">
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-md-4">
-          <img src="{{ edited_url }}" alt="Edited Image">
-        </div>
-        <div class="col-md-4">
-          <img src="{{ light_url }}" alt="Light Image">
-        </div>
-        <div class="col-md-4">
-          <img src="{{ lookup_url }}" alt="Lookup Image">
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-md-12">
-          <img src="{{ mask_url }}" alt="Mask Image">
-        </div>
 
   </div>
 
@@ -77,9 +52,9 @@
 
 
     function drawLineGraph(data, id) {
-      var labels = data.labels;
-      var chartLabel = data.chartLabel;
-      var chartdata = data.chartdata;
+      var labels2 = data.labels2;
+      var graphLabel = data.graphLabel;
+      var graphData = data.graphData;
       var ctx = document.getElementById(id).getContext('2d');
       var chart = new Chart(ctx, {
         // The type of chart we want to create
@@ -87,12 +62,12 @@
 
         // The data for our dataset
         data: {
-          labels: labels,
+          labels: labels2,
           datasets: [{
-            label: chartLabel,
+            label: graphLabel,
             backgroundColor: 'rgb(255, 100, 200)',
-            borderColor: 'rgb(55, 99, 132)',
-            data: chartdata,
+            borderColor: 'rgb(0,144,255)',
+            data: graphData,
           }]
         },
 
@@ -104,7 +79,8 @@
             }],
             yAxes: [{
               ticks: {
-                beginAtZero: true
+                beginAtZero: true,
+                  max: 100
               }
             }]
           }
@@ -148,7 +124,8 @@
           scales: {
             yAxes: [{
               ticks: {
-                beginAtZero: true
+                beginAtZero: true,
+                  max: 200
               }
             }]
           }

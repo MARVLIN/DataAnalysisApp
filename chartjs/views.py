@@ -1,11 +1,13 @@
 import json
 
+from PIL.ImageQt import rgb
 from django.db.models import Case, CharField, IntegerField, Value, When
 import cv2
 import os
 import requests
 from django.core.files.base import ContentFile
 from django.db.models import Case, CharField, IntegerField, Value, When
+from django.db.models.functions import Round
 from django.conf import settings
 from django.http import HttpResponse
 from django.shortcuts import render
@@ -87,17 +89,7 @@ class HomeView(View):
 
 class ChartData(APIView):
     def get(self, request, format=None):
-        # Code to generate the data
-        data = {'labels': ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
-                'datasets': [{'label': 'My First Dataset',
-                              'data': [65, 59, 80, 81, 56, 55, 40],
-                              'fill': False,
-                              'borderColor': 'rgb(75, 192, 192)',
-                              'lineTension': 0.1}]}
 
-
-
-    def get(self, request, format=None):
         labels = [
             '5%',
             '10%',
@@ -119,15 +111,30 @@ class ChartData(APIView):
             '90%',
             '95%',
             '100%',
-            ]
-        chartLabel = 'Iteration Data'
-        y = [0, 10, 5, 2, 20, 30, 100]
+        ]
+
+        chartLabel = 'Quality Index'
+        graphLabel = 'Quality (px^2) VS Error (px^2) FLOW'
+
+        dataMSE = list(Data.objects.annotate(rounded_mse=Round('mse')).values_list('rounded_mse', flat=True))
+        dataSSIM = list(Data.objects.annotate(rounded_ssim=Round('ssim_score')).values_list('rounded_ssim', flat=True))
+        print(f'DataSSIM: {dataSSIM}, dataMSE: {dataMSE}')
+
+        quality_index = []
+        for i in range(len(dataMSE)):
+            quality_index.append(dataMSE[i] / dataSSIM[i])
+        print(quality_index)
+
+
 
         data = {
-            'labels':labels,
-            'chartLabel':chartLabel,
-            'chartdata':y,
+            'labels': dataSSIM,
+            'chartLabel': chartLabel,
+            'chartdata': quality_index,
+
+            'labels2': dataMSE,
+            'graphLabel': graphLabel,
+            'graphData': dataSSIM
         }
 
-        # Return the data as a JSON response with an HTTP status code of 200
         return HttpResponse(json.dumps(data), content_type='application/json')

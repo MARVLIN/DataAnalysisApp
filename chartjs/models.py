@@ -12,6 +12,9 @@ class Data(models.Model):
     light = models.ImageField(upload_to='media/')
     lookup = models.ImageField(upload_to='media/')
     mask = models.ImageField(upload_to='media/')
+    mse = models.FloatField(max_length=3, default=0.0)
+    ssim_score = models.FloatField(max_length=3, default=0.0)
+
 
 class ImageMetrics(models.Model):
     x = models.FloatField()
