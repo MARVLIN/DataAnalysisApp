@@ -1,8 +1,13 @@
+import base64
 import json
 
 from PIL.ImageQt import rgb
-from django.db.models import Case, CharField, IntegerField, Value, When
+from django.db.models import Case, CharField, IntegerField, Value, When, Count
 import cv2
+import matplotlib
+matplotlib.use('Agg')
+import matplotlib.pyplot as plt
+
 import os
 import requests
 from django.core.files.base import ContentFile
@@ -84,12 +89,12 @@ class HomeView(View):
                 output_field=CharField()
             ))
 
+
             return render(request, 'chartjs/index.html')
 
 
 class ChartData(APIView):
     def get(self, request, format=None):
-
         labels = [
             '5%',
             '10%',
@@ -112,7 +117,6 @@ class ChartData(APIView):
             '95%',
             '100%',
         ]
-
         chartLabel = 'Quality Index'
         graphLabel = 'Quality (px^2) VS Error (px^2) FLOW'
 
@@ -122,9 +126,11 @@ class ChartData(APIView):
 
         quality_index = []
         for i in range(len(dataMSE)):
-            quality_index.append(dataMSE[i] / dataSSIM[i])
-        print(quality_index)
-
+            if dataSSIM[i] == 0:
+                quality_index.append(0)
+            else:
+                quality_index.append(dataMSE[i] / dataSSIM[i])
+            print(quality_index)
 
 
         data = {
@@ -134,7 +140,9 @@ class ChartData(APIView):
 
             'labels2': dataMSE,
             'graphLabel': graphLabel,
-            'graphData': dataSSIM
+            'graphData': dataSSIM,
+
+
         }
 
         return HttpResponse(json.dumps(data), content_type='application/json')

@@ -14,7 +14,7 @@ class Data(models.Model):
     mask = models.ImageField(upload_to='media/')
     mse = models.FloatField(max_length=3, default=0.0)
     ssim_score = models.FloatField(max_length=3, default=0.0)
-
+    edited_quality = models.TextField(max_length=50)
 
 class ImageMetrics(models.Model):
     x = models.FloatField()

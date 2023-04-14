@@ -1,140 +1,182 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
-
 <head>
   <meta charset="utf-8">
   <title>chatsjs</title>
   <!-- Latest compiled and minified CSS -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-
   <!-- jQuery library -->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-
   <!-- Latest compiled JavaScript -->
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-
-
-
+  <!-- Chart.js library -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
 </head>
-
 <body class="container-fluid">
-  <center class="row">
-    <h1>Data <b></b>  <b></b>Overview</h1>
-  </center>
+  <div class="row" style="text-align: center;">
+    <h1>Data Overview</h1>
+  </div>
   <hr />
   <div class="row">
     <div class="col-md-6">
       <canvas id="myChartline"></canvas>
     </div>
-        <div class="col-md-6">
+    <div class="col-md-6">
       <canvas id="myChartBar"></canvas>
-      <div class="row">
-
+    </div>
   </div>
-
-  <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
-
+  <div class="row">
+    <div class="col-md-6">
+        <center><h1>Database Quality Distribution</h1></center>
+        <canvas id="myChart"></canvas>
+    </div>
+  </div>
   <script>
-    var endpoint = '/api';
+    $(document).ready(function() {
+      // Set the API endpoint URL
+        const endpoint = '/api';
 
-    $.ajax({
-      method: "GET",
-      url: endpoint,
-      success: function(data) {
-        drawLineGraph(data, 'myChartline');
-        drawBarGraph(data, 'myChartBar');
-        console.log("drawing");
-      },
-      error: function(error_data) {
-        console.log(error_data);
-      }
-    })
+        // Make an AJAX request to the API
+      $.ajax({
+        method: "GET",
+        url: endpoint,
+        success: function(data) {
+          // Call the drawLineGraph(), drawBarGraph(), and drawDoughnutGraph() functions to render the charts
+          drawLineGraph(data);
+          drawBarGraph(data);
+          drawDoughnutGraph(data);
+        },
+        error: function(error_data) {
+          console.log(error_data);
+        }
+      })
+    });
 
-
-    function drawLineGraph(data, id) {
+    function drawLineGraph(data) {
+      // Extract the required data from the API response
       var labels2 = data.labels2;
       var graphLabel = data.graphLabel;
       var graphData = data.graphData;
-      var ctx = document.getElementById(id).getContext('2d');
-      var chart = new Chart(ctx, {
-        // The type of chart we want to create
-        type: 'line',
 
-        // The data for our dataset
-        data: {
-          labels: labels2,
-          datasets: [{
-            label: graphLabel,
-            backgroundColor: 'rgb(255, 100, 200)',
-            borderColor: 'rgb(0,144,255)',
-            data: graphData,
-          }]
-        },
+      // Get the canvas element for the line chart
+      var ctx = document.getElementById('myChartline').getContext('2d');
 
-        // Configuration options go here
-        options: {
-          scales: {
-            xAxes: [{
-              display: true
-            }],
-            yAxes: [{
-              ticks: {
-                beginAtZero: true,
-                  max: 100
-              }
-            }]
-          }
-        }
-
-      });
+      // Create a new instance of Chart.js with the required configuration options
+        const chart = new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: labels2,
+                datasets: [{
+                    label: graphLabel,
+                    backgroundColor: 'rgb(255, 100, 200)',
+                    borderColor: 'rgb(0,144,255)',
+                    data: graphData,
+                }]
+            },
+            options: {
+                scales: {
+                    xAxes: [{
+                        display: true
+                    }],
+                    yAxes: [{
+                        ticks: {
+                            beginAtZero: true,
+                            max: 100
+                        }
+                    }]
+                }
+            }
+        });
     }
 
-    function drawBarGraph(data, id) {
-      var labels = data.labels;
-      var chartLabel = data.chartLabel;
-      var chartdata = data.chartdata;
-      var ctx = document.getElementById(id).getContext('2d');
-      var myChart = new Chart(ctx, {
-        type: 'bar',
-        data: {
-          labels: labels,
-          datasets: [{
-            label: chartLabel,
-            data: chartdata,
-            backgroundColor: [
-              'rgba(255, 99, 132, 0.2)',
-              'rgba(54, 162, 235, 0.2)',
-              'rgba(255, 206, 86, 0.2)',
-              'rgba(75, 192, 192, 0.2)',
-              'rgba(153, 102, 255, 0.2)',
-              'rgba(255, 159, 64, 0.2)'
-            ],
-            borderColor: [
-              'rgba(255, 99, 132, 1)',
-              'rgba(54, 162, 235, 1)',
-              'rgba(255, 206, 86, 1)',
-              'rgba(75, 192, 192, 1)',
-              'rgba(153, 102, 255, 1)',
-              'rgba(255, 159, 64, 1)'
-            ],
-            borderWidth: 1
-          }]
-        },
-        options: {
-          scales: {
-            yAxes: [{
-              ticks: {
-                beginAtZero: true,
-                  max: 200
-              }
+
+    function drawDoughnutGraph(data) {
+        // Get the canvas element
+        var ctx = document.getElementById('myChart').getContext('2d');
+
+        // Define the data for the chart
+        var data = {
+            labels: ['Good Quality', 'Medium Quality', 'Bad Quality'],
+            datasets: [{
+                data: [30, 50, 20],
+                backgroundColor: ['#4CAF50', '#FFC107', '#F44336']
             }]
-          }
-        }
-      });
+        };
+
+        // Define the options for the chart
+        var options = {
+            cutoutPercentage: 50,
+            legend: {
+                position: 'bottom',
+                labels: {
+                    boxWidth: 10
+                }
+            }
+        };
+
+        // Create the chart
+        var myChart = new Chart(ctx, {
+            type: 'doughnut',
+            data: data,
+            options: options
+        });
+
     }
+
+
+    function drawBarGraph(data) {
+        var labels = data.labels;
+        var chartLabel = data.chartLabel;
+        var chartdata = data.chartdata;
+        var ctx = document.getElementById('myChartBar').getContext('2d');
+        const myChart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: labels,
+                datasets: [{
+                    label: chartLabel,
+                    data: chartdata,
+                    backgroundColor: [
+                        'rgba(255, 99, 132, 0.2)',
+                        'rgba(54, 162, 235, 0.2)',
+                        'rgba(255, 206, 86, 0.2)',
+                        'rgba(75, 192, 192, 0.2)',
+                        'rgba(153, 102, 255, 0.2)',
+                        'rgba(255, 159, 64, 0.2)',
+                        'rgba(0, 255, 255, 0.2)',
+                        'rgba(255, 0, 255, 0.2)',
+                        'rgba(128, 0, 0, 0.2)',
+                        'rgba(0, 128, 0, 0.2)'
+                    ],
+                    borderColor: [
+                        'rgba(255, 99, 132, 1)',
+                        'rgba(54, 162, 235, 1)',
+                        'rgba(255, 206, 86, 1)',
+                        'rgba(75, 192, 192, 1)',
+                        'rgba(153, 102, 255, 1)',
+                        'rgba(255, 159, 64, 1)',
+                        'rgba(0, 255, 255, 1)',
+                        'rgba(255, 0, 255, 1)',
+                        'rgba(128, 0, 0, 1)',
+                        'rgba(0, 128, 0, 1)'
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    yAxes: [{
+                        ticks: {
+                            beginAtZero: true
+                        }
+                    }]
+                }
+            }
+        });
+    }
+
+
+
   </script>
-        </div>
-  </div>
 </body>
-
 </html>
