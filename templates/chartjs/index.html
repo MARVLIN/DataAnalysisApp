@@ -27,7 +27,7 @@
   </div>
   <div class="row">
     <div class="col-md-6">
-        <center><h1>Database Quality Distribution</h1></center>
+        <center><h2>Database Quality Distribution</h2></center>
         <canvas id="myChart"></canvas>
     </div>
   </div>
@@ -93,12 +93,12 @@
     function drawDoughnutGraph(data) {
         // Get the canvas element
         var ctx = document.getElementById('myChart').getContext('2d');
-
+        var DoughnutData = data.DoughnutData
         // Define the data for the chart
-        var data = {
+        var Dchart = {
             labels: ['Good Quality', 'Medium Quality', 'Bad Quality'],
             datasets: [{
-                data: [30, 50, 20],
+                data: DoughnutData,
                 backgroundColor: ['#4CAF50', '#FFC107', '#F44336']
             }]
         };
@@ -117,7 +117,7 @@
         // Create the chart
         var myChart = new Chart(ctx, {
             type: 'doughnut',
-            data: data,
+            data: Dchart,
             options: options
         });
 

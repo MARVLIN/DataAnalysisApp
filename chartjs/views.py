@@ -34,8 +34,13 @@ class HomeView(View):
         if not os.path.exists(folder_name):
             os.makedirs(folder_name)
 
+        media_dir = 'uploads/media'
+        image_extensions = ('.png', '.jpg')
+        image_count = sum(1 for filename in os.listdir(media_dir) if filename.lower().endswith(image_extensions))
+        result = image_count / 7
+
         # Create a new Iteration instance
-        iteration = Iteration.objects.create(name='')
+        iteration = Iteration.objects.create(name=result)
 
         # Create a new Data instance and associate it with the Iteration instance
         data = Data.objects.create(iteration=iteration)
@@ -120,9 +125,10 @@ class ChartData(APIView):
         chartLabel = 'Quality Index'
         graphLabel = 'Quality (px^2) VS Error (px^2) FLOW'
 
+
         dataMSE = list(Data.objects.annotate(rounded_mse=Round('mse')).values_list('rounded_mse', flat=True))
         dataSSIM = list(Data.objects.annotate(rounded_ssim=Round('ssim_score')).values_list('rounded_ssim', flat=True))
-        print(f'DataSSIM: {dataSSIM}, dataMSE: {dataMSE}')
+
 
         quality_index = []
         for i in range(len(dataMSE)):
@@ -131,6 +137,32 @@ class ChartData(APIView):
             else:
                 quality_index.append(dataMSE[i] / dataSSIM[i])
             print(quality_index)
+
+        good_quality = []
+        medium_quality = []
+        bad_quality = []
+
+        for i in dataSSIM:
+            if i >= 95:
+                good_quality.append(i)
+
+        for x in dataSSIM:
+            if x >= 80:
+                medium_quality.append(x)
+
+        for z in dataSSIM:
+            if z < 80:
+                bad_quality.append(z)
+
+        good_quality_count = len(good_quality)
+        medium_quality_count = len(medium_quality)
+        bad_quality = len(bad_quality)
+
+
+        DoughnutData = []
+        DoughnutData.append(good_quality_count)
+        DoughnutData.append(medium_quality_count)
+        DoughnutData.append(bad_quality)
 
 
         data = {
@@ -141,6 +173,7 @@ class ChartData(APIView):
             'labels2': dataMSE,
             'graphLabel': graphLabel,
             'graphData': dataSSIM,
+            'DoughnutData': DoughnutData,
 
 
         }
