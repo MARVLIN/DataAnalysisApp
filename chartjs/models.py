@@ -1,5 +1,6 @@
 from django.db import models
 
+
 class Iteration(models.Model):
     name = models.CharField(max_length=100)
 
@@ -20,4 +21,3 @@ class ImageMetrics(models.Model):
     x = models.FloatField()
     y = models.FloatField()
     data = models.ForeignKey(Data, on_delete=models.CASCADE)
-

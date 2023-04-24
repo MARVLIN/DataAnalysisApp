@@ -4,22 +4,60 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b99ef24c-2041-4b91-9639-96c16bc57116" name="Changes" comment="Doughnut Graph &#10;#TODO: make the data dynamic">
+    <list default="true" id="b99ef24c-2041-4b91-9639-96c16bc57116" name="Changes" comment="Implemented Dynamic data for DoughnutGraph&#10;&#10;#TODO: Fix the histogram so that the data represented would be continuous">
+      <change beforePath="$USER_HOME$/PycharmProjects/DataAnalysis/.idea/dataSources.local.xml" beforeDir="false" afterPath="$USER_HOME$/PycharmProjects/DataAnalysis/.idea/dataSources.local.xml" afterDir="false" />
+      <change beforePath="$USER_HOME$/PycharmProjects/DataAnalysis/.idea/dataSources/a4d74c7f-d76c-446f-a63d-ca8e7663ef48.xml" beforeDir="false" afterPath="$USER_HOME$/PycharmProjects/DataAnalysis/.idea/dataSources/a4d74c7f-d76c-446f-a63d-ca8e7663ef48.xml" afterDir="false" />
       <change beforePath="$USER_HOME$/PycharmProjects/DataAnalysis/.idea/workspace.xml" beforeDir="false" afterPath="$USER_HOME$/PycharmProjects/DataAnalysis/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$USER_HOME$/PycharmProjects/DataAnalysis/chartjs/models.py" beforeDir="false" afterPath="$USER_HOME$/PycharmProjects/DataAnalysis/chartjs/models.py" afterDir="false" />
       <change beforePath="$USER_HOME$/PycharmProjects/DataAnalysis/chartjs/views.py" beforeDir="false" afterPath="$USER_HOME$/PycharmProjects/DataAnalysis/chartjs/views.py" afterDir="false" />
-      <change beforePath="$USER_HOME$/PycharmProjects/DataAnalysis/db.sqlite3" beforeDir="false" afterPath="$USER_HOME$/PycharmProjects/DataAnalysis/db.sqlite3" afterDir="false" />
+      <change beforePath="$USER_HOME$/PycharmProjects/DataAnalysis/db.sqlite3" beforeDir="false" />
       <change beforePath="$USER_HOME$/PycharmProjects/DataAnalysis/templates/chartjs/index.html" beforeDir="false" afterPath="$USER_HOME$/PycharmProjects/DataAnalysis/templates/chartjs/index.html" afterDir="false" />
+      <change beforePath="$USER_HOME$/PycharmProjects/DataAnalysis/uploads/media/1.png" beforeDir="false" />
+      <change beforePath="$USER_HOME$/PycharmProjects/DataAnalysis/uploads/media/2.png" beforeDir="false" />
+      <change beforePath="$USER_HOME$/PycharmProjects/DataAnalysis/uploads/media/3.png" beforeDir="false" />
+      <change beforePath="$USER_HOME$/PycharmProjects/DataAnalysis/uploads/media/4.jpg" beforeDir="false" />
+      <change beforePath="$USER_HOME$/PycharmProjects/DataAnalysis/uploads/media/5.png" beforeDir="false" />
+      <change beforePath="$USER_HOME$/PycharmProjects/DataAnalysis/uploads/media/6.png" beforeDir="false" />
+      <change beforePath="$USER_HOME$/PycharmProjects/DataAnalysis/uploads/media/7.png" beforeDir="false" />
+      <change beforePath="$USER_HOME$/PycharmProjects/DataAnalysis/uploads/media/dark25.png" beforeDir="false" />
+      <change beforePath="$USER_HOME$/PycharmProjects/DataAnalysis/uploads/media/dark26.png" beforeDir="false" />
+      <change beforePath="$USER_HOME$/PycharmProjects/DataAnalysis/uploads/media/dark27.png" beforeDir="false" />
+      <change beforePath="$USER_HOME$/PycharmProjects/DataAnalysis/uploads/media/dark28.png" beforeDir="false" />
+      <change beforePath="$USER_HOME$/PycharmProjects/DataAnalysis/uploads/media/dark29.png" beforeDir="false" />
+      <change beforePath="$USER_HOME$/PycharmProjects/DataAnalysis/uploads/media/dark30.png" beforeDir="false" />
+      <change beforePath="$USER_HOME$/PycharmProjects/DataAnalysis/uploads/media/dark31.png" beforeDir="false" />
+      <change beforePath="$USER_HOME$/PycharmProjects/DataAnalysis/uploads/media/dark32.png" beforeDir="false" />
+      <change beforePath="$USER_HOME$/PycharmProjects/DataAnalysis/uploads/media/dark33.png" beforeDir="false" />
+      <change beforePath="$USER_HOME$/PycharmProjects/DataAnalysis/uploads/media/dark34.png" beforeDir="false" />
+      <change beforePath="$USER_HOME$/PycharmProjects/DataAnalysis/uploads/media/dark35.png" beforeDir="false" />
+      <change beforePath="$USER_HOME$/PycharmProjects/DataAnalysis/uploads/media/dark36.png" beforeDir="false" />
+      <change beforePath="$USER_HOME$/PycharmProjects/DataAnalysis/uploads/media/dark37.png" beforeDir="false" />
+      <change beforePath="$USER_HOME$/PycharmProjects/DataAnalysis/uploads/media/dark38.png" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="DjangoConsoleOptions" custom-start-script="import sys; print('Python %s on %s' % (sys.version, sys.platform))&#10;import django; print('Django %s' % django.get_version())&#10;sys.path.extend([WORKING_DIR_AND_PYTHON_PATHS])&#10;if 'setup' in dir(django): django.setup()&#10;import django_manage_shell; django_manage_shell.run(PROJECT_ROOT)">
+    <option name="myCustomStartScript" value="import sys; print('Python %s on %s' % (sys.version, sys.platform))&#10;import django; print('Django %s' % django.get_version())&#10;sys.path.extend([WORKING_DIR_AND_PYTHON_PATHS])&#10;if 'setup' in dir(django): django.setup()&#10;import django_manage_shell; django_manage_shell.run(PROJECT_ROOT)" />
+  </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Python Script" />
       </list>
+    </option>
+  </component>
+  <component name="FlaskConsoleOptions" custom-start-script="import sys&#10;sys.path.extend([WORKING_DIR_AND_PYTHON_PATHS])&#10;from flask.cli import ScriptInfo&#10;locals().update(ScriptInfo(create_app=None).load_app().make_shell_context())&#10;print(&quot;Python %s on %s\nApp: %s [%s]\nInstance: %s&quot; % (sys.version, sys.platform, app.import_name, app.env, app.instance_path))">
+    <envs>
+      <env key="FLASK_APP" value="app" />
+    </envs>
+    <option name="myCustomStartScript" value="import sys&#10;sys.path.extend([WORKING_DIR_AND_PYTHON_PATHS])&#10;from flask.cli import ScriptInfo&#10;locals().update(ScriptInfo(create_app=None).load_app().make_shell_context())&#10;print(&quot;Python %s on %s\nApp: %s [%s]\nInstance: %s&quot; % (sys.version, sys.platform, app.import_name, app.env, app.instance_path))" />
+    <option name="myEnvs">
+      <map>
+        <entry key="FLASK_APP" value="app" />
+      </map>
     </option>
   </component>
   <component name="Git.Settings">
@@ -36,6 +74,7 @@
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;WebServerToolWindowFactoryState&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/Users/artemiikhristich/PycharmProjects/DataAnalysis/uploads/media&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
@@ -49,6 +88,9 @@
   }
 }</component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$USER_HOME$/PycharmProjects/DataAnalysis/uploads/media" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$USER_HOME$/PycharmProjects/DataAnalysis/chartjs" />
     </key>
@@ -90,7 +132,9 @@
       <updated>1680813289357</updated>
       <workItem from="1680813308939" duration="70491000" />
       <workItem from="1681363625678" duration="12963000" />
-      <workItem from="1681510894230" duration="534000" />
+      <workItem from="1681510894230" duration="2860000" />
+      <workItem from="1681885483481" duration="2719000" />
+      <workItem from="1682288169506" duration="5147000" />
     </task>
     <task id="LOCAL-00001" summary="Updated database filtering + graphs are mapped to the real time data">
       <created>1681113337655</created>
@@ -113,7 +157,14 @@
       <option name="project" value="LOCAL" />
       <updated>1681463445498</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="Implemented Dynamic data for DoughnutGraph&#10;&#10;#TODO: Fix the histogram so that the data represented would be continuous">
+      <created>1681511477567</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1681511477567</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -134,6 +185,7 @@
     <MESSAGE value="Updated database filtering + graphs are mapped to the real time data" />
     <MESSAGE value="requirements.txt + migration data" />
     <MESSAGE value="Doughnut Graph &#10;#TODO: make the data dynamic" />
-    <option name="LAST_COMMIT_MESSAGE" value="Doughnut Graph &#10;#TODO: make the data dynamic" />
+    <MESSAGE value="Implemented Dynamic data for DoughnutGraph&#10;&#10;#TODO: Fix the histogram so that the data represented would be continuous" />
+    <option name="LAST_COMMIT_MESSAGE" value="Implemented Dynamic data for DoughnutGraph&#10;&#10;#TODO: Fix the histogram so that the data represented would be continuous" />
   </component>
 </project>
