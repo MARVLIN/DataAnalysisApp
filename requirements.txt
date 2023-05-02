@@ -16,7 +16,7 @@ dask @ file:///home/conda/feedstock_root/build_artifacts/dask-core_1679692358967
 Django @ file:///home/conda/feedstock_root/build_artifacts/django_1680693679482/work
 djangorestframework @ file:///home/conda/feedstock_root/build_artifacts/djangorestframework_1663854154474/work
 fastjsonschema==2.16.2
-Flask==2.2.2
+Flask==2.3.2
 fsspec @ file:///home/conda/feedstock_root/build_artifacts/fsspec_1678112553830/work
 idna @ file:///home/conda/feedstock_root/build_artifacts/idna_1663625384323/work
 imagecodecs @ file:///Users/runner/miniforge3/conda-bld/imagecodecs_1679699705134/work
